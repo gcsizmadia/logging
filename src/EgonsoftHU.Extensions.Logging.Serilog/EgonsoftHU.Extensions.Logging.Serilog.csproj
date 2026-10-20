@@ -9,10 +9,8 @@
     <!--
     <VersionSuffix>$([System.String]::Format('prerelease-{0:000}-{1:0000}', $([System.DateTime]::Now.DayOfYear), $([System.Math]::Floor($([System.DateTime]::Now.TimeOfDay.TotalMinutes)))))</VersionSuffix>
     -->
-    <!--
-    <Authors></Authors>
-    <Owners></Owners>
-    -->
+    <!--<Authors></Authors>-->
+    <!--<Owners></Owners>-->
     <Title>Egonsoft.HU Serilog Logging Extensions</Title>
     <Description>Serilog.ILogger extensions:
 
@@ -24,37 +22,25 @@
 - Enrich log events with the name of the source member (method, property, etc.) in which the log event occurs.
 - Enrich log events with multiple properties at once using PropertyBagEnricher.
 - Populate Exception.Data dictionary with the log event properties.</Summary>
-    <!--
-    <Copyright></Copyright>
-    <PackageRequireLicenseAcceptance></PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression></PackageLicenseExpression>
-    -->
-    <PackageProjectUrl>https://github.com/gcsizmadia/EgonsoftHU.Extensions.Logging.Serilog</PackageProjectUrl>
-    <!--
-    <PackageIcon></PackageIcon>
-    <PackageIconUrl></PackageIconUrl>
-    -->
-    <PackageReadmeFile>PACKAGE_README.md</PackageReadmeFile>
+    <!--<Copyright></Copyright>-->
+    <!--<PackageRequireLicenseAcceptance></PackageRequireLicenseAcceptance>-->
+    <!--<PackageLicenseExpression></PackageLicenseExpression>-->
+    <PackageProjectUrl>https://github.com/gcsizmadia/logging</PackageProjectUrl>
+    <!--<PackageIcon></PackageIcon>-->
+    <!--<PackageIconUrl></PackageIconUrl>-->
+    <!--<PackageReadmeFile></PackageReadmeFile>-->
     <PackageTags>$(PackageTags) extensions extension logging serilog ilogger enrichers enricher</PackageTags>
-    <PackageReleaseNotes>Please visit https://github.com/gcsizmadia/EgonsoftHU.Extensions.Logging.Serilog/releases to view the release notes.</PackageReleaseNotes>
-    <!--
-    <PublishRepositoryUrl></PublishRepositoryUrl>
-    -->
-    <RepositoryUrl>https://github.com/gcsizmadia/EgonsoftHU.Extensions.Logging.Serilog.git</RepositoryUrl>
-    <!--
-    <RepositoryType></RepositoryType>
-    <RepositoryBranch></RepositoryBranch>
-    <RepositoryCommit></RepositoryCommit>
-    <PackageType></PackageType>
-    <DevelopmentDependency></DevelopmentDependency>
-    <MinClientVersion></MinClientVersion>
-    -->
+    <PackageReleaseNotes>Please visit https://github.com/gcsizmadia/logging/releases to view the release notes.</PackageReleaseNotes>
+    <!--<RepositoryUrl></RepositoryUrl>-->
+    <!--<RepositoryType></RepositoryType>-->
+    <!--<RepositoryBranch></RepositoryBranch>-->
+    <!--<RepositoryCommit></RepositoryCommit>-->
+    <!--<PackageType></PackageType>-->
+    <!--<DevelopmentDependency></DevelopmentDependency>-->
+    <!--<MinClientVersion></MinClientVersion>-->
   </PropertyGroup>
   <ItemGroup>
-    <None Include="$(SolutionDir)PACKAGE_README.md" Pack="True" PackagePath="\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="EgonsoftHU.Extensions.Bcl" Version="3.0.1" />
+    <PackageReference Include="EgonsoftHU.Extensions.Bcl" Version="10.0.0" />
     <PackageReference Include="Serilog" Version="4.1.0" />
   </ItemGroup>
 </Project>
