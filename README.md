@@ -1,4 +1,4 @@
-# Egonsoft.HU Serilog Logging Extensions
+﻿# Egonsoft.HU Serilog Logging Extensions
 
 [![GitHub](https://img.shields.io/github/license/gcsizmadia/EgonsoftHU.Extensions.Logging.Serilog?label=License)](https://opensource.org/licenses/MIT)
 [![Nuget](https://img.shields.io/nuget/v/EgonsoftHU.Extensions.Logging.Serilog?label=NuGet)](https://www.nuget.org/packages/EgonsoftHU.Extensions.Logging.Serilog)
@@ -6,25 +6,39 @@
 
 `PropertyBagEnricher` and C# extension methods for `Serilog.ILogger`.
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Summary](#summary)
-  - [SourceMember property](#sourcemember-property)
-  - [PropertyBagEnricher : Serilog.Core.ILogEventEnricher](#propertybagenricher--serilogcoreilogeventenricher)
-  - [Exception.Data population](#exceptiondata-population)
-- [Releases](#releases)
-  - [Breaking change](#breaking-change)
-- [Examples](#examples)
-  - [ILogger.Here() - single use per method](#iloggerhere---single-use-per-method)
-  - [ILogger.Here() - multiple use per method](#iloggerhere---multiple-use-per-method)
-  - [PropertyBagEnricher](#propertybagenricher)
-  - [Exception.Data - populate log event properties](#exceptiondata---populate-log-event-properties)
-  - [SourceMember property customization](#sourcemember-property-customization)
-
 ## Introduction
 
-The motivation behind this project is to add the source member name as a log event property.
+The motivation behind this project is as follows:
+
+- Enrich log events with the name of the source member (method, property, etc.) in which the log event occurs.
+  - `ILogger.Here()` extension method.
+  - `PropertyBagEnricher.CreateForSourceMember()` static factory method.
+  - `PropertyBagEnricher.Here()` instance method.
+- Enrich log events with multiple properties at once using `PropertyBagEnricher`.
+- Populate `Exception.Data` dictionary with the log event properties.
+  - `Exception.Populate(PropertyBagEnricher)` extension method.
+
+## Releases
+
+You can download the package from **nuget.org**: [EgonsoftHU.Extensions.Logging.Serilog](https://www.nuget.org/packages/EgonsoftHU.Extensions.Logging.Serilog)
+
+You can find the release notes [here](https://github.com/gcsizmadia/logging/releases).
+
+[Releases](RELEASES.md) under active support or development:
+
+|Version|Release Date|Latest Patch Version|End of Support|Targets|
+|-|-|-|-|-|
+|10.0|2026-10-20|10.0.0|2028-11-14|`net8.0`, `net9.0`, `net10.0`<br/>`net472`<br/>`netstandard2.0`, `netstandard2.1`|
+
+### Breaking change
+
+The project namespace has changed to avoid namespace collision with `Serilog`.  
+**Please note:** The package id will remain unchanged.
+
+|Version|Namespace|
+|-|-|
+|`>= 1.0.0 && < 2.0.0`|`EgonsoftHU.Extensions.Logging.Serilog`|
+|`>= 2.0.0`|`EgonsoftHU.Extensions.Logging`|
 
 ## Summary
 
@@ -48,23 +62,6 @@ This enricher helps you reducing creating logger instances by adding multiple lo
 `Exception.Data` dictionary can contain additional user-defined information about the exception.
 
 The log event properties the enricher contains can be populated into the `Exception.Data` dictionary using the `Exception.Populate(PropertyBagEnricher)` extension method. See example below.
-
-## Releases
-
-You can download the package from [nuget.org](https://www.nuget.org/).
-- [EgonsoftHU.Extensions.Logging.Serilog](https://www.nuget.org/packages/EgonsoftHU.Extensions.Logging.Serilog)
-
-You can find the release notes [here](https://github.com/gcsizmadia/EgonsoftHU.Extensions.Logging.Serilog/releases).
-
-### Breaking change
-
-The project namespace has changed to avoid namespace collision with `Serilog`.  
-**Please note:** The package id will remain unchanged.
-
-|Version|Namespace|
-|-|-|
-|`>= 1.0.0 && < 2.0.0`|`EgonsoftHU.Extensions.Logging.Serilog`|
-|`>= 2.0.0`|`EgonsoftHU.Extensions.Logging`|
 
 ## Examples
 
@@ -207,12 +204,10 @@ var enricher =
         .AddRange(propertiesFromOtherSource);
 ```
 
-Determines whether an instance of a specified type c can be assigned to a variable of the current type.
-
 **Please note:**
 - `AddRange<TValue>()` method expects a single parameter.
 - The parameter type is `IEnumerable<KeyValuePair<string, TValue>>`.
-- `TValue` generic type parameter has no generic constraint, hence both nullable and non-nullable types can be used as the type of the values. E.g.:
+- `TValue` generic type parameter has no generic constraint, hence, both nullable and non-nullable types can be used as the type of the values. E.g.:
   - `Dictionary<string, object>`
   - `Dictionary<string, object?>`
 
