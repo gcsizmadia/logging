@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/00_Build/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="src/app.manifest" />
+  </Folder>
+  <Folder Name="/00_Documents/">
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="RELEASES.md" />
+  </Folder>
+  <Project Path="src/EgonsoftHU.Extensions.Logging.Serilog/EgonsoftHU.Extensions.Logging.Serilog.csproj" />
+</Solution>
