@@ -3,10 +3,12 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace EgonsoftHU.Extensions.Logging
 {
+    [SuppressMessage("Naming", "CA1710")]
     public partial class PropertyBagEnricher : IReadOnlyDictionary<string, object?>
     {
         bool IReadOnlyDictionary<string, object?>.ContainsKey(string key)
