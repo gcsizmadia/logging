@@ -244,7 +244,7 @@ throw new ArithmeticException("Cannot calculate area.").Populate(enricher);
 
 As the contextual logger uses the `SourceContext` property name for the type, it seems to be logical to use the `SourceMember` property name for the member in that type.
 
-Should you need to customize the log event property name for whatever reason, use the `SourceMemberNamingConfiguration` as below:
+Should you need to customize the log event property name for whatever reason, use the `SourceMemberNamingConfiguration.Initialize()` method as below:
 
 ```csharp
 using EgonsoftHU.Extensions.Logging;
@@ -258,20 +258,19 @@ class Program
 
     public static void Main(string[] args)
     {
+        SourceMemberNamingConfiguration.Initialize("CallerMemberName");
+
         /* Log.Logger configuration omitted for clarity */
 
         logger = Log.Logger.ForContext<Program>();
 
-        // The log event property will be { "SourceMember": "Main" }
-        logger.Here().Information("First message");
-
-        // The future calls to `Here()` extension method will use the new setting below
-        SourceMemberNamingConfiguration.Current.PropertyName = "CallerMemberName";
-
         // The log event property will be { "CallerMemberName": "Main" }
-        logger.Here().Information("Second message");
+        logger.Here().Information("First message");
     }
 }
 ```
 
-**Please note:** This setting is global within the application.
+**Please note:**
+- This setting is global within the application.
+- Unless `Initialize()` method is called, the default property name (`SourceMember`) will be used.
+- This method may be called only once, preferably before you log anything. Subsequent calls will throw an `InvalidOperationException`.
