@@ -108,11 +108,11 @@ namespace EgonsoftHU.Extensions.Logging
         /// <returns>The <see cref="PropertyBagEnricher"/> so that additional calls can be chained.</returns>
         /// <remarks>
         /// The log event property name is <c>SourceMember</c> by default.<br/>
-        /// It can be customized by setting the <c>SourceMemberNamingConfiguration.Current.PropertyName</c> property.
+        /// It can be customized by calling the <see cref="SourceMemberNamingConfiguration.Initialize(String)"/> method at application startup.
         /// </remarks>
         public PropertyBagEnricher Here([CallerMemberName] string? sourceMember = null)
         {
-            return Add(SourceMemberNamingConfiguration.Current.PropertyName, sourceMember);
+            return Add(SourceMemberNamingConfiguration.PropertyName, sourceMember);
         }
 
         /// <inheritdoc/>

@@ -23,14 +23,14 @@ namespace EgonsoftHU.Extensions.Logging
         /// <returns>A logger that will enrich log events with the caller member name.</returns>
         /// <remarks>
         /// The log event property name is <c>SourceMember</c> by default.<br/>
-        /// It can be customized by setting the <c>SourceMemberNamingConfiguration.Current.PropertyName</c> property.
+        /// It can be customized by calling the <see cref="SourceMemberNamingConfiguration.Initialize(String)"/> method at application startup.
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="logger"/> is <see langword="null" />.</exception>
         public static ILogger Here(this ILogger logger, [CallerMemberName] string? sourceMember = null)
         {
             logger.ThrowIfNull();
 
-            return logger.ForContext(SourceMemberNamingConfiguration.Current.PropertyName, sourceMember);
+            return logger.ForContext(SourceMemberNamingConfiguration.PropertyName, sourceMember);
         }
     }
 }
