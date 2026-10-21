@@ -8,7 +8,7 @@ The following table lists supported releases.
 
 |Version|Release Date|Latest Patch Version|End of Support|Targets|
 |-|-|-|-|-|
-|10.0|2026-10-20|10.0.0|2028-11-14|`net8.0`, `net9.0`, `net10.0`<br/>`net472`<br/>`netstandard2.0`, `netstandard2.1`|
+|10.0|2026-10-20|10.0.1|2028-11-14|`net8.0`, `net9.0`, `net10.0`<br/>`net472`<br/>`netstandard2.0`, `netstandard2.1`|
 
 ### End-of-life releases
 
