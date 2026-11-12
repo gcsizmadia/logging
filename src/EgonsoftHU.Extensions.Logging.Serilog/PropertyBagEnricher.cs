@@ -24,7 +24,13 @@ namespace EgonsoftHU.Extensions.Logging
         /// </summary>
         public PropertyBagEnricher()
         {
-            Properties = new Dictionary<string, LogEventPropertyCreationInfo>(StringComparer.InvariantCultureIgnoreCase);
+            Properties =
+#if LANGVERSION15_0_OR_GREATER
+                [with(StringComparer.InvariantCultureIgnoreCase)]
+#else
+                new(StringComparer.InvariantCultureIgnoreCase)
+#endif
+                ;
         }
 
         /// <summary>
@@ -69,10 +75,7 @@ namespace EgonsoftHU.Extensions.Logging
 
             if (!Properties.ContainsKey(propertyName))
             {
-                Properties.Add(
-                    propertyName,
-                    new LogEventPropertyCreationInfo(propertyName, value, destructureObjects)
-                );
+                Properties.Add(propertyName, new(propertyName, value, destructureObjects));
             }
 
             return this;
