@@ -7,7 +7,7 @@ This code is licensed under MIT license (see LICENSE for details)
   <assemblyIdentity
     type="win32"
     name="EgonsoftHU.Extensions.Logging.Serilog"
-    version="10.0.0.0"
+    version="11.0.0.0"
   />
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
     <application>
